@@ -17,6 +17,7 @@
 
 ### 3. POST Book
 ![POST](screenshoots/Post.png)
+### 3a. POST Berhasil
 ![POST Berhasil](screenshoots/PostBerhasil.png)
 
 ### 4. Validasi Input
@@ -42,4 +43,5 @@
 ![404](screenshoots/404NotFound.png)
 
 ### 10. Global Error Handler
+
 ![Global Error Handling](screenshoots/GlobalErrorHandler.png)
