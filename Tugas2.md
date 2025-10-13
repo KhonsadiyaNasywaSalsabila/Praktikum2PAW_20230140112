@@ -17,23 +17,25 @@
 
 ### 3. POST Book
 ![POST](screenshoots/Post.png)
-### 3a. POST Berhasil
+### > POST Berhasil
 ![POST Berhasil](screenshoots/PostBerhasil.png)
 
-### 4. Validasi Input
+### 4. Validasi Input Harus Terisi Semua
 ![Validasi Input POST Harus terisi semua](screenshoots/ValidasiInput.png)
 ![Validasi Input PUT Harus terisi semua](screenshoots/ValidasiInputPut.png)
 
-### 5. Validasi Input ID PUT
+### 5. Validasi Input ID Harus Berupa Angka
 ![Validasi Input ID Harus berupa angka di PUT](screenshoots/ValidasiInputID.png)
 ![Validasi Input ID Harus berupa angka di DELETE](screenshoots/ValidasiIDDelete.png)
 
 ### 6. PUT Book
 ![PUT](screenshoots/PUT.png)
+### > PUT Berhasil
 ![PUT Berhasil](screenshoots/PutBerhasil.png)
 
 ### 7. DELETE Book
 ![DELETE](screenshoots/Delete.png)
+### > Delete Berhasil
 ![DELETE Berhasil](screenshoots/DeleteBerhasil.png)
 
 ### 8. Middleware Logging
@@ -43,5 +45,5 @@
 ![404](screenshoots/404NotFound.png)
 
 ### 10. Global Error Handler
-
 ![Global Error Handling](screenshoots/GlobalErrorHandler.png)
+
