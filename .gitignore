@@ -1,0 +1,13 @@
+# Folder dependensi (ini yang paling penting)
+node_modules/
+
+# File environment (jangan commit API key/password)
+.env
+
+# File log
+*.log
+npm-debug.log*
+
+# File bawaan OS
+.DS_Store
+Thumbs.db
