@@ -1,13 +1,16 @@
 const { User } = require('../models');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');	
+const jwt = require('jsonwebtoken');
 const JWT_SECRET = 'INI_ADALAH_KUNCI_RAHASIA_ANDA_YANG_SANGAT_AMAN';
 
 exports.register = async (req, res) => {
+// ... (Kode exports.register tidak berubah)
   try {
-    const { nama, email, password, role } = req.body;
+    // Sinkronisasi: Menggunakan 'name' dari frontend (req.body)
+    const { name, email, password, role } = req.body;
 
-    if (!nama || !email || !password) {
+    // Validasi yang memicu 400 (Bad Request) jika body kosong
+    if (!name || !email || !password) {
       return res.status(400).json({ message: "Nama, email, dan password harus diisi" });
     }
 
@@ -15,12 +18,13 @@ exports.register = async (req, res) => {
       return res.status(400).json({ message: "Role tidak valid. Harus 'mahasiswa' atau 'admin'." });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10); 
+    const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await User.create({
-      nama,
+      // Menyimpan nilai 'name' ke field 'nama' database
+      nama: name,
       email,
       password: hashedPassword,
-      role: role || 'mahasiswa' 
+      role: role || 'mahasiswa'
     });
 
     res.status(201).json({
@@ -54,16 +58,17 @@ exports.login = async (req, res) => {
     const payload = {
       id: user.id,
       nama: user.nama,
-      role: user.role 
+      role: user.role,
+      email: user.email // <--- PERBAIKAN: Tambahkan email ke payload JWT
     };
 
     const token = jwt.sign(payload, JWT_SECRET, {
-      expiresIn: '1h' 
+      expiresIn: '1h'
     });
 
     res.json({
       message: "Login berhasil",
-      token: token 
+      token: token
     });
 
   } catch (error) {
