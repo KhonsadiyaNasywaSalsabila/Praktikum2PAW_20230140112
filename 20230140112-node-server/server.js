@@ -13,6 +13,7 @@ const authRoutes = require('./routes/auth');
 const ruteBuku = require("./routes/books");
 
 
+
 // =========================================================
 // 2. Konfigurasi CORS
 // =========================================================
@@ -78,6 +79,8 @@ app.use('/api/auth', authRoutes);
 app.use("/api/books", ruteBuku);
 app.use("/api/presensi", presensiRoutes);
 app.use("/api/reports", reportRoutes);
+
+
 
 
 // 6. Error Handling Middleware

@@ -1,35 +1,33 @@
 // routes/reports.js
-
 const express = require('express');
-const { query } = require('express-validator'); // <-- Import 'query'
+const { query } = require('express-validator'); 
 const router = express.Router();
 const reportController = require('../controllers/reportController');
 const { addUserData, isAdmin } = require('../middleware/permissionMiddleware');
 
-// --- 1. DEFINISIKAN VALIDATOR DI SINI (SEBELUM DIGUNAKAN) ---
-const validateDateRange = [
+// Validasi input agar tidak error saat diproses database
+const validateReportQuery = [
   query('tanggalMulai')
-    .notEmpty().withMessage('Query parameter tanggalMulai tidak boleh kosong')
-    .isDate().withMessage('Format tanggalMulai harus valid (Contoh: YYYY-MM-DD)'),
+    .notEmpty().withMessage('Tanggal Mulai harus diisi')
+    .isISO8601().withMessage('Format tanggal tidak valid (YYYY-MM-DD)'),
     
   query('tanggalSelesai')
-    .notEmpty().withMessage('Query parameter tanggalSelesai tidak boleh kosong')
-    .isDate().withMessage('Format tanggalSelesai harus valid (Contoh: YYYY-MM-DD)'),
+    .notEmpty().withMessage('Tanggal Selesai harus diisi')
+    .isISO8601().withMessage('Format tanggal tidak valid (YYYY-MM-DD)'),
     
-  // Tambahkan validasi opsional untuk 'nama'
   query('nama')
     .optional()
-    .isString().withMessage('Nama harus berupa teks')
-    .trim()
+    .isString().trim()
 ];
 
-// --- 2. TERAPKAN VALIDATOR KE RUTE ---
+// Endpoint: GET /api/reports/daily
+// Sesuai instruksi UCP[cite: 111]: Dilindungi middleware isAdmin
 router.get(
   '/daily', 
-  [addUserData, isAdmin], // Middleware permission Anda
-  validateDateRange,      // <--- TAMBAHKAN VALIDATOR DI SINI
+  addUserData, 
+  isAdmin, 
+  validateReportQuery, 
   reportController.getDailyReport
 );
 
-// --- 3. EXPORT ROUTER DI BAGIAN PALING AKHIR ---
 module.exports = router;

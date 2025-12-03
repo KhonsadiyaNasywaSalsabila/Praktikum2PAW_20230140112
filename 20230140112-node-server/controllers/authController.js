@@ -6,10 +6,8 @@ const JWT_SECRET = 'INI_ADALAH_KUNCI_RAHASIA_ANDA_YANG_SANGAT_AMAN';
 exports.register = async (req, res) => {
 // ... (Kode exports.register tidak berubah)
   try {
-    // Sinkronisasi: Menggunakan 'name' dari frontend (req.body)
     const { name, email, password, role } = req.body;
 
-    // Validasi yang memicu 400 (Bad Request) jika body kosong
     if (!name || !email || !password) {
       return res.status(400).json({ message: "Nama, email, dan password harus diisi" });
     }
@@ -20,7 +18,6 @@ exports.register = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await User.create({
-      // Menyimpan nilai 'name' ke field 'nama' database
       nama: name,
       email,
       password: hashedPassword,
@@ -59,7 +56,7 @@ exports.login = async (req, res) => {
       id: user.id,
       nama: user.nama,
       role: user.role,
-      email: user.email // <--- PERBAIKAN: Tambahkan email ke payload JWT
+      email: user.email // <--- PERBAIKAN KRITIS: Tambahkan email ke payload JWT
     };
 
     const token = jwt.sign(payload, JWT_SECRET, {

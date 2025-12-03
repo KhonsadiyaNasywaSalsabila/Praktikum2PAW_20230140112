@@ -12,17 +12,12 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        // INI ADALAH PERBAIKANNYA
         references: {
-          model: 'Users', // Pastikan nama tabel ini sesuai (biasanya bentuk plural)
-          key: 'id'
+          model: "Users",
+          key: "id",
         },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
-      },
-      nama: {
-        type: Sequelize.STRING,
-        allowNull: false
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
       },
       checkIn: {
         allowNull: false,
