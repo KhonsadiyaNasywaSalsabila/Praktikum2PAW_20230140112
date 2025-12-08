@@ -34,4 +34,4 @@
 ![Report](screenshoots/ReportSemuaPresensi.png)
 
 ### 9. Database Tabel Presensi
-![Database Presensi](screenshoots/DatabasePresensi.png)
+![Database Presensi](screenshoots/DatabasePresensiLokasi.png)
