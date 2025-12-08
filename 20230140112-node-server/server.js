@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const morgan = require("morgan");
+const path = require('path'); 
 
 // 1. Definisikan Port
 const PORT = 3001;
@@ -11,7 +12,6 @@ const presensiRoutes = require("./routes/presensi");
 const reportRoutes = require("./routes/reports");
 const authRoutes = require('./routes/auth');
 const ruteBuku = require("./routes/books");
-
 
 
 // =========================================================
@@ -75,12 +75,11 @@ app.get("/", (req, res) => {
 // =========================================================
 
 // SEMUA ROUTE HARUS DITEMPATKAN SETELAH app.use(express.json());
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/auth', authRoutes);
 app.use("/api/books", ruteBuku);
 app.use("/api/presensi", presensiRoutes);
 app.use("/api/reports", reportRoutes);
-
-
 
 
 // 6. Error Handling Middleware

@@ -7,6 +7,7 @@ const { addUserData } = require('../middleware/permissionMiddleware');
 const { body } = require('express-validator'); // <-- HANYA IMPORT 'body'
 
 router.use(addUserData);
+router.post('/check-in', [addUserData, presensiController.upload.single('image')], presensiController.CheckIn);
 router.post('/check-in', presensiController.CheckIn);
 router.post('/check-out', presensiController.CheckOut);
 router.delete("/:id", presensiController.deletePresensi);
